@@ -12,7 +12,7 @@
                %boxit,        % check whether paper is inside correct margins
                %titlepage,    % separate title page
                %refpage       % separate references
-               %biblatex,     % biblatex is used
+               biblatex,     % biblatex is used
                %keeplastbox,   % flushend option: not to un-indent last line in References
                %nospread,     % flushend option: do not fill with whitespace to balance columns
                %hyphens,      % allow \url to hyphenate at "-" (hyphens)
@@ -57,10 +57,10 @@
 %
 \ifboolexpr{bool{jacowbiblatex}}%
  {%
-  \addbibresource{jacow-test.bib}
-  \addbibresource{biblatex-examples.bib}
+  \addbibresource{references.bib}
  }{}
-\listfiles
+
+
 
 %%
 %%   Lengths for the spaces in the title
@@ -270,6 +270,19 @@ The concept behind the script is designed to handle multi-coulomb interactions b
 \end{figure}
 
 \subsection{Argument of the current limitation of the air region and the possible imrovement gained by adding vacuum chambers to the transfer line}
+
+\section{Energy control}
+
+Rapid adjustment of beam energy is essential for effective radiation testing, as altering the energy spectrum enables the exploration of various Linear Energy Transfer (LET) regions and penetration depths. This methodology, drawn from previous work by the CHIMERA activities at CERN, involves adjusting the magnetic field (B-field) plateau of the Proton Synchrotron (PS) at its flat top. The makerule algorithm calculates the necessary magnetic field in the subsequent magnets of the transfer lines for a corresponding change in rigidity. The removal of the Pole Face Windings (PFW) usage due to their non-linear scaling with beam rigidity, is necessary to provide continuous energy variation.
+
+The 2022 approach of employing distinct cycles for each energy level was replaced in 2023 with a unified cycle. In this cycle, the B-field is adjusted via a Python script. This significantly reduces the time to switch between energies. This system allowed for seamless energy transitions between distinct levels—\SI{650}{}, \SI{750}{}, and \SI{1000}{\mega\electronvolt\per\nucleon}—with the capability to execute these changes rapidly at each new spill, effectively as fast as every \SI{15}-\SI{30}{\second}.
+
+The single cycle has enabled the user to perform energy scans, which are useful to determine precisely the beam’s kinetic energy using its penetration range in a slab of material of a known thickness, e.g. PolyMethyl Methacrylate (PMMA), or to automatize/speed up the SEE test of a component. The energy range previously mentioned is based on beam energy values inside the PS during the extraction. During the transport in the transfer line, multiple air regions are traversed by the beam, which lowers the beams kinetic energy through energy straggling. This energy straggling at the DUT can be estimated using the FLUKA [2] simulation and measured using the degraders. The FLUKA model also includes other elements that produce straggling effects, such as vacuum windows and beam instrumentation. \cite{noauthor_hearts_nodate}
+
+Controlling the fluence, the number of particles incident per unit area, is vital for accurate radiation effect testing. The revised energy control mechanism enhances the ability to adjust the fluence quickly and accurately across different energy levels. This capability is essential for simulating the diverse radiation environments encountered in space, providing a more robust assessment of microelectronics' resilience under various conditions.
+
+This enhanced energy scan technique, featuring rapid and precise energy adjustments, represents a significant advancement in the domain of radiation effects testing. It enables more efficient and versatile testing procedures, vital for evaluating the durability of space-bound microelectronics against the spectrum of radiation threats in outer space.
+
 \subsection{Straggling effects}
 
 The straggling effects of air on ion beams in the T8 line, as observed at the T08.BTV35 monitoring station. The data, corroborated by FLUKA simulations, showcases the relationship between the exit kinetic energy of the ion beams and their measured displacement from the beam center. This plot, seen in Figure \ref{fig:straggling_effects}, serves as a pivotal illustration of the challenges of low energy ion transport. It underscores the necessity for reduces the transport through air. By mitigating air straggling, we aim to achieve a more consistent beam trajectory, thus enhancing operational capabilities for VHE ion irradiation at the IRRAD/CHARM facility. The installation of an additional vacuum pipe in F61.MBXHD025 would allow for the linear scaling of magnet strengths, ensuring precise control over the beam path and maintaining beam integrity at varying energies and ion species.
@@ -281,35 +294,11 @@ The straggling effects of air on ion beams in the T8 line, as observed at the T0
 \end{figure}
 
 
-\section{Energy scan}
-
-Rapid adjustment of beam energy is essential for effective radiation testing, as altering the energy spectrum enables the exploration of various Linear Energy Transfer (LET) regions and penetration depths. This methodology, drawn from previous work by the CHIMERA activities at CERN, involves adjusting the magnetic field (B-field) plateau of the Proton Synchrotron (PS) at its flat top. The makerule algorithm calculates the necessary magnetic field in the subsequent magnets of the transfer lines for a corresponding change in rigidity.
-
-\subsection{Energy Control Mechanism}
-The 2022 approach of employing distinct cycles for each energy level was replaced in 2023 with a unified cycle. In this cycle, the B-field is adjusted via a Python script. This significantly reduces the time to switch between energies. This system allowed for seamless energy transitions between distinct levels—\SI{650}{}, \SI{750}{}, and \SI{1000}{\mega\electronvolt\per\nucleon}—with the capability to execute these changes rapidly at each new spill, effectively as fast as every \SI{15}-\SI{30}{\second}.
-
-\subsection{Automation and Precision in Energy Control}
-The integration of the makerule into the system's operation enabled the automatic scaling of magnet strengths, crucial for transporting the heavy ion beam to the CHARM facility with precise energy levels. This automation significantly reduced the operational overhead and manual intervention, streamlining the process of adjusting beam energies. The removal of operational constraints, such as the discontinuation of Pole Face Windings (PFW) usage due to their non-linear scaling with beam rigidity, further facilitated continuous energy variation.
-
-\subsection{Fluence Control}
-Controlling the fluence, the number of particles incident per unit area, is vital for accurate radiation effect testing. The revised energy control mechanism enhances the ability to adjust the fluence quickly and accurately across different energy levels. This capability is essential for simulating the diverse radiation environments encountered in space, providing a more robust assessment of microelectronics' resilience under various conditions.
-
-This enhanced energy scan technique, featuring rapid and precise energy adjustments, represents a significant advancement in the domain of radiation effects testing. It enables more efficient and versatile testing procedures, vital for evaluating the durability of space-bound microelectronics against the spectrum of radiation threats in outer space.
-
-\subsection{Enhancements in Fluence Control}
-The control over fluence—the ion beam's intensity per unit area—has been markedly improved through this advanced energy control mechanism. By enabling quick adjustments in beam energy, the system can more accurately simulate various radiation environments, essential for the comprehensive testing of microelectronics intended for space applications. This capability ensures that the components undergo rigorous evaluation under diverse conditions, reflecting the myriad challenges they will encounter in outer space.
-
-The advancements detailed herein not only highlight a significant leap forward in beam energy control for radiation effects testing but also set a new standard for future experiments. The ability to swiftly adapt beam energy, coupled with precise fluence control, paves the way for more efficient and effective testing methodologies, ensuring that space-bound microelectronics are thoroughly vetted against the full spectrum of radiation threats.
-
-
 
 \section{CONCLUSION}
 
 The findings from the beam optics studies and simulations for the November 2023 run of the HEARTS experiment underscore the critical importance of understanding and mitigating the effects of air scattering on beam size for the reliable testing of microelectronics destined for space. The comprehensive optics measurements and validated model simulations conducted for the transfer line from the CERN Proton Synchrotron to the CHARM facility offer valuable insights into optimizing beam characteristics for Single Event Effects testing. This work not only highlights the current performance limitations but also sets the stage for future enhancements in radiation testing methodologies at CHARM. By accurately quantifying the impact of air scattering, this contribution paves the way for more effective and reliable testing protocols, ensuring that space-bound microelectronics can withstand the harsh radiation environment of outer space.
 
-%
-% only for "biblatex"
-%
 \ifboolexpr{bool{jacowbiblatex}}%
 	{\printbibliography}%
 	{%
