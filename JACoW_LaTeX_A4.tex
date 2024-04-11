@@ -72,9 +72,7 @@
 
 \title{Beam Optics Modelling of Slow-Extracted Very High-Energy Heavy Ions from the CERN Proton Synchrotron for Radiation Effects Testing \thanks{The HEARTS project is funded by the European Union under Grant Agreement No. 101082402, through the Space Work Programme of the European Commission.}}
 
-\author{E. P. Johnson\thanks{eliott.philippe.johnson@cern.ch}, M.A. Fraser, CERN, Geneva, CH \\
-		P. Contributor\textsuperscript{1}, Name of Institute or Affiliation, City, Country \\
-		\textsuperscript{1}also at Name of Secondary Institute or Affiliation, City, Country}
+\author{E. P. Johnson\thanks{eliott.philippe.johnson@cern.ch}, M.A. Fraser, CERN, Geneva, CH}
 	
 \maketitle
 
@@ -155,8 +153,7 @@ MWPC   & \(-0.963 \pm 0.082\) & \(-0.169 \pm 0.019\) \\
 I found some dispersion values that I then compare to the model. Then I rematch on the dx, dpx, dy, dpy and used these guys as initial conditions. It's important to note that within the beam size equation, there's a critical relationship between the beta function and dispersion: $ \sigma = \sqrt{\epsilon \beta + \left(\frac{dp}{p}\cdot D\right)^{2}} $
 With $\epsilon$ the emittance, $\beta$ the beta-function, $\frac{dp}{p}$ the relative momentum spread and $D$ the dispersion. This equation highlights the intrinsic connection between these parameters, demonstrating how they collectively influence the beam's size.
 
-
-This is not exactly correct because I the dispersion steering only for one optic. What I should have done is do the frev for every optics.
+However, the initial approach contained a limitation in that the dispersion correction was performed solely for one optical setting. A more rigorous method would entail adjusting the revolution frequency ($f_{\text{rev}}$) for each optical configuration to precisely tailor the dispersion characteristics throughout the beam line.
 
 \begin{table}[h!]
     \centering
@@ -251,14 +248,26 @@ The concept behind the script is designed to handle multi-coulomb interactions b
    \label{fig:simple_line}
 \end{figure}
 
-\subsection{Comparison with other simulation tools}
+The analytical computation was compared to a Monte Carlo simulation where each particle's trajectory through the lattice was perturbed to simulate the effects of scattering phenomena. This was achieved by introducing random transverse kicks at predefined lattice positions. The amplitude of these stochastic perturbations was governed by a Gaussian distribution with a zero mean and a standard deviation defined by $\theta_{RMS}$, representing the root-mean-square scattering angle. This procedure models the random nature of particle interactions within the medium, which is a characteristic aspect of the physical scattering process. Each particle was subjected to this randomization process, thereby generating a distribution of trajectories that collectively represent the beam's transverse profile post-scattering. The data accrued from these simulations provided an ensemble of particle paths, which were subsequently used to elucidate the statistical properties of the beam, such as the spread in the particle distribution, and to compare the Monte Carlo results against the analytical predictions, thereby validating the model within the stochastic framework of the Monte Carlo method. \ref{tab:sigma_comparison} compares the results of these two simulations techniques. For 50'000 particles, the MC method takes 30 minutes whereas the analytical method is independend of the number of particles and takes 1-2 seconds.
 
-\begin{figure}[!htb]
-   \centering
-   \includegraphics*[width=1.0\columnwidth]{compare_simulation.png}
-   \caption{This plots compare the MAD-X simulation with MCS, Xsuite and FLUKA on the simple line.}
-   \label{fig:simple_line}
-\end{figure}
+\begin{table}[ht]
+\centering
+\resizebox{\columnwidth}{!}{% Adjusts the table to column width
+\begin{tabular}{lcc}
+\hline
+Distribution & $\sigma$ Analytical (m) & $\sigma$ Monte Carlo (m) \\
+\hline
+H Non-Scattered & 7.41e-03 & 7.43e-03 \\
+H Scattered     & 1.05e-02 & 1.03e-02 \\
+V Non-Scattered   & 4.53e-03 & 4.55e-03 \\
+V Scattered       & 8.67e-03 & 8.45e-03 \\
+\hline
+\end{tabular}
+}
+\caption{Sigma values for analytical and Monte Carlo methods in non-scattered and scattered particle distributions.}
+\label{tab:sigma_comparison}
+\end{table}
+
 
 \subsection{Argument of the current limitation of the air region and the possible imrovement gained by adding vacuum chambers to the transfer line}
 
