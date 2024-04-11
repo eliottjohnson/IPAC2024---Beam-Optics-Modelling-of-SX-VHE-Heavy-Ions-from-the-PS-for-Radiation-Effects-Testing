@@ -48,6 +48,7 @@
  {\usepackage[utf8]{inputenc}}           % switch to utf8
 
 \usepackage[USenglish]{babel}
+\usepackage{hyperref}
 
 \DeclareSIUnit\nucleon{u}
 
@@ -92,28 +93,8 @@ The HEARTS activities take place in the East Area of CERN and use the slow extra
 
 Prior to the ion commissioning quadrupole scan were performed on the East Dump. The extraction line from the PS to the East Dump has three quadrupoles that can be scanned and a btv to perform beam size measurements. The quadrupole scan was performed in the high energy range of the ion activites for HEARTS to diminish the effects of beam size scattering. We used the Pb (lead) ion beam at \SI{2.0}{\giga\electronvolt\per\nucleon} and 11 different quadrupoles scans to match the initial conditions of the F61 to the East Dump. Which gave an initial set of conditions where we matched on $\beta_{x,y}$, $\alpha_{x,y}$ Courant–Snyder (Twiss) parameters and $\epsilon_{n,x,y}$ the normalized emittances.
 
-This lead to this set of initial conditions
+This lead to a first set of initial conditions. Of course, in the beam size formula, the beta and the dispersion are linked.
 
-\begin{table}[h!]
-    \centering
-    \caption{Matched Initial Parameters as of October 13, 2023}
-    \label{tab:initial_conditions}
-    \begin{tabular}{l c c}
-        \hline
-        Parameter & Horizontal & Vertical \\
-        \hline
-        $\beta_0$ (m) & 53.074 & 3.675 \\
-        $\alpha_0$ & -13.191 & 0.859 \\
-        $D_0$ (m) & 0.13 & 0.0 \\
-        $D'_0$ & 0.02 & 0.0 \\
-        $\varepsilon_{n}$ ($\text{m}^{-5}$) & $2.53 \times 10^{-5}$ & $6.94 \times 10^{-6}$ \\
-        \hline
-        \multicolumn{2}{l}{\textit{Other Parameters}} \\
-        \hline
-        $\sigma_e$ & \multicolumn{2}{c}{0.0045} \\
-        \hline
-    \end{tabular}
-\end{table}
 
 
 \subsection{Dispersion measurement technique and result}
@@ -179,31 +160,35 @@ MWPC   & \(-0.963 \pm 0.082\) & \(-0.169 \pm 0.019\) \\
    \label{fig:dispersion}
 \end{figure}
 
-I found some dispersion values that I then compare to the model. Then I rematch on the dx, dpx, dy, dpy and used these guys as initial conditions.
+I found some dispersion values that I then compare to the model. Then I rematch on the dx, dpx, dy, dpy and used these guys as initial conditions. Because the twiss parameters betas are linked to the dispersion in the beam size formula, these will compensate for the change in the initial dispersion.
 
 This is not exactly correct because I the dispersion steering only for one optic. What I should have done is do the frev for every optics.
 
 \begin{table}[h!]
     \centering
-    \caption{Matched Initial Parameters as of April 10, 2024}
-    \label{tab:initial_conditions_2024}
-    \begin{tabular}{l c c}
+    \caption{Comparison of Matched Initial Parameters}
+    \label{tab:initial_conditions_comparison_single_col}
+    \begin{tabular}{l c}
         \hline
-        Parameter & Horizontal & Vertical \\
+        Parameter & Value Change \\
         \hline
-        $\beta_0$ (m) & 66.748 & 3.764 \\
-        $\alpha_0$ & -16.272 & 0.703 \\
-        $D_0$ (m) & 0.086 & -0.003 \\
-        $D'_0$ & 0.017 & -0.005 \\
-        $\varepsilon_{n}$ ($\text{m}^{-5}$) & $2.28 \times 10^{-5}$ & $8.63 \times 10^{-6}$ \\
+        $\beta_x$ (m) & 53.074 \(\rightarrow\) 66.748 \\
+        $\beta_y$ (m) & 3.675 \(\rightarrow\) 3.764 \\
+        $\alpha_x$ & -13.191 \(\rightarrow\) -16.272 \\
+        $\alpha_y$ & 0.859 \(\rightarrow\) 0.703 \\
+        $D_x$ (m) & 0.13 \(\rightarrow\) 0.086 \\
+        $D_y$ (m) & 0.0 \(\rightarrow\) -0.003 \\
+        $D'_x$ & 0.02 \(\rightarrow\) 0.017 \\
+        $D'_y$ & 0.0 \(\rightarrow\) -0.005 \\
+        $\varepsilon_{nx}$ ($\text{m}^{-5}$) & $2.53 \times 10^{-5}$ \(\rightarrow\) $2.28 \times 10^{-5}$ \\
+        $\varepsilon_{ny}$ ($\text{m}^{-5}$) & $6.94 \times 10^{-6}$ \(\rightarrow\) $8.63 \times 10^{-6}$ \\
         \hline
-        \multicolumn{2}{l}{\textit{Other Parameters}} \\
+        \textit{Other Parameters} & \\
         \hline
-        $\sigma_e$ & \multicolumn{2}{c}{0.0045} \\
+        $\sigma_e$ & 0.0045 (Unchanged) \\
         \hline
     \end{tabular}
 \end{table}
-
 
 \subsection{Pybobyqa to fit the model to the measurement}
 \subsection{Kick response}
@@ -213,6 +198,17 @@ This is not exactly correct because I the dispersion steering only for one optic
 \section{Optics small, large beam}
 \subsection{Comparison with Octavius array}
 \subsection{Comparison with MWPC}
+
+On the last day of the November 2023 CHIMERA HEARTS run, RP did a survey.
+Beam energy: 3 GeV/n. Here's a comparison between the MAD-X model and the MWPC.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics*[width=1.0\columnwidth]{rp_survey.png}
+   \caption{Difference in beam size between measurement and simulation.}
+   \label{fig:diff_beam_size}
+\end{figure}
+
 \subsection{Comparison with BTV}
 \subsection{Mention difficulty of changing the optics because the beam is not well centered}
 \subsection{Upload to YASP}
@@ -224,20 +220,78 @@ This is not exactly correct because I the dispersion steering only for one optic
 \subsection{Link with Wesley's contribution}
 
 \section{Air scattering}
+
+In particle physics, accurately predicting beam size in accelerators is essential but challenging due to multi-Coulomb scattering. This phenomenon, where charged particles interact with atomic nuclei, significantly alters beam trajectory and spread, deviating from idealized simulations. Ignoring these interactions leads to inaccuracies in beam focus and efficiency, impacting experiments and applications like medical therapies. Incorporating multi-Coulomb scattering into simulations enhances the precision of beam behavior predictions, facilitating better experiment design and accelerator functionality.
+
 \subsection{Overview of the formula}
-\subsection{Comparison with FLUKA}
-\subsection{Comparison with Xsuite}
+
+The fundamental formula that describes the angle of deflection due to multi-Coulomb scattering as a particle passes through a material is given by the following formula:
+
+\[
+\theta_{rms} = \frac{13.6 \text{MeV/c}}{p\beta_{p}}q_{p}\sqrt\frac{L}{L_{rad}}\]
+
+where:
+\begin{itemize}
+\item p = $24\cdot 10^{3}$ Beam total energy in MeV
+\item q = 1
+\item P = 1.01325  Standard air pressure at sea level in Bar
+\item P\_Torr = P x 750.062 Standard air pressure at sea level in Torr
+\item L\_rad0 = 301 for air \href{https://cds.cern.ch/record/941314/files/p245.pdf}{Table with radiation lengths}
+\item L\_rad = L\_rad0/(P\_Torr/760)
+\end{itemize}
+
+\[
+\epsilon_{1} = \epsilon_{0}\sqrt{1+\frac{\beta_{0}\theta_{rms}^{2}}{\epsilon_{0}}}
+\]
+
+\[
+\beta_{1}=\frac{\beta_{0}}{\sqrt{1+\frac{\beta_{0}\theta_{rms}^{2}}{\epsilon_{0}}}}
+\]
+
+
+\subsection{Overview of the script}
+
+The concept behind the script is designed to handle multi-coulomb interactions by integrating a straightforward debugging process with optimization through pybobqa. It introduces a user interaction mechanism where the user defines the boundaries of an air region with markers "AIR\_START" and "AIR\_END," alongside a final "END" marker. Additionally, users can specify the step size for computations, which can vary from 1cm to 1m or any other user-defined measure. The core functionality of the script includes adding inner markers within these air regions at discrete, user-selected intervals for performing calculations. At the onset of the first "AIR\_START" marker, the script is programmed to save the beta function values using "SAVEBETA" and then proceeds to split the sequence at "AIR\_START." Subsequently, it runs a Twiss calculation on this split sequence, utilizing the saved beta function values. However, it updates the beta functions for both the horizontal ( $\beta_{x}$ ) and vertical ( $\beta_{y}$ ) planes, as well as the horizontal and vertical emittances ( $e_{x}$, $e_{y}$ ), based on the calculations. The process continues in a loop: running Twiss calculations up to the next "INNER\_MARKER," saving the beta function values again with "SAVEBETA," and then splitting the sequence, thereby allowing for precise and iterative adjustments based on multi-coulomb interactions within specified air regions.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics*[width=1.0\columnwidth]{air_scattering_1.png}
+   \caption{Simple line with simulation of multi-coulomb scattering.}
+   \label{fig:simple_line}
+\end{figure}
+
+\subsection{Comparison with other simulation tools}
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics*[width=1.0\columnwidth]{compare_simulation.png}
+   \caption{This plots compare the MAD-X simulation with MCS, Xsuite and FLUKA on the simple line.}
+   \label{fig:simple_line}
+\end{figure}
+
 \subsection{Argument of the current limitation of the air region and the possible imrovement gained by adding vacuum chambers to the transfer line}
 \subsection{Straggling effects}
 
+The straggling effects of air on ion beams in the T8 line, as observed at the T08.BTV35 monitoring station. The data, corroborated by FLUKA simulations, showcases the relationship between the exit kinetic energy of the ion beams and their measured displacement from the beam center. This plot, seen in Figure \ref{fig:straggling_effects}, serves as a pivotal illustration of the challenges of low energy ion transport. It underscores the necessity for reduces the transport through air. By mitigating air straggling, we aim to achieve a more consistent beam trajectory, thus enhancing operational capabilities for VHE ion irradiation at the IRRAD/CHARM facility. The installation of an additional vacuum pipe in F61.MBXHD025 would allow for the linear scaling of magnet strengths, ensuring precise control over the beam path and maintaining beam integrity at varying energies and ion species.
+\begin{figure}[!htb]
+   \centering
+   \includegraphics*[width=1.0\columnwidth]{straggling_effects.png}
+   \caption{This plots shows the straggling effects of air in the T8 line.}
+   \label{fig:straggling_effects}
+\end{figure}
+
+
 \section{Energy scan}
+
+There was some demand to change the energy quickly in the order of seconds instead of minutes as we had in the previous run. For this the approach was changed. Instead of having three different cycles we had a single one where the B-field was changing through a python script.
+
 \subsection{How the energy is controlled}
 \subsection{Fluence controlled}
 
 
 \section{CONCLUSION}
 
-
+The findings from the beam optics studies and simulations for the November 2023 run of the HEARTS experiment underscore the critical importance of understanding and mitigating the effects of air scattering on beam size for the reliable testing of microelectronics destined for space. The comprehensive optics measurements and validated model simulations conducted for the transfer line from the CERN Proton Synchrotron to the CHARM facility offer valuable insights into optimizing beam characteristics for Single Event Effects testing. This work not only highlights the current performance limitations but also sets the stage for future enhancements in radiation testing methodologies at CHARM. By accurately quantifying the impact of air scattering, this contribution paves the way for more effective and reliable testing protocols, ensuring that space-bound microelectronics can withstand the harsh radiation environment of outer space.
 
 %
 % only for "biblatex"
