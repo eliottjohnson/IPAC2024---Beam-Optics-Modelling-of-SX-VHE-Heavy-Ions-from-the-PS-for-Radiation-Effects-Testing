@@ -87,18 +87,14 @@
 
 \section{OPTICS MEASUREMENTS}
 
-The HEARTS activities take place in the East Area of CERN and use the slow extracted beam from the PS through the F61 and T8 transfer lines to irradiate the DUT (device under test) in CHARM (Cern High energy AcceleRator Mixed field facility).
+The HEARTS activities take place in the East Area of CERN, utilizing the slow-extracted beam from the PS via the F61 and T8 transfer lines to irradiate the DUT (Device Under Test) in the CHARM (CERN High Energy Accelerator Mixed-field facility).
 
 \subsection{Quadrupole scan measurement}
 
-Prior to the ion commissioning quadrupole scan were performed on the East Dump. The extraction line from the PS to the East Dump has three quadrupoles that can be scanned and a btv to perform beam size measurements. The quadrupole scan was performed in the high energy range of the ion activites for HEARTS to diminish the effects of beam size scattering. We used the Pb (lead) ion beam at \SI{2.0}{\giga\electronvolt\per\nucleon} and 11 different quadrupoles scans to match the initial conditions of the F61 to the East Dump. Which gave an initial set of conditions where we matched on $\beta_{x,y}$, $\alpha_{x,y}$ Courant–Snyder (Twiss) parameters and $\epsilon_{n,x,y}$ the normalized emittances.
-
-This lead to a first set of initial conditions. Of course, in the beam size formula, the beta and the dispersion are linked.
+Before the ion commissioning, quadrupole scans were performed at the East Dump. The extraction line from the PS to the East Dump includes three quadrupoles capable of being scanned, alongside a BTV for beam size measurements. These scans were conducted in the high energy range of the ion activities for HEARTS to mitigate the effects of beam size scattering. The Pb (lead) ion beam at \SI{2.0}{\giga\electronvolt\per\nucleon} was used to conduct 11 different quadrupole scans to align the initial conditions of F61 with those of the East Dump. This alignment achieved a set of initial conditions matching the $\beta_{x,y}$, $\alpha_{x,y}$ Courant–Snyder (Twiss) parameters, and $\epsilon_{n,x,y}$, the normalized emittances with the dispersion (dx, dy, dpx, dpy) fixed. Py-BOBYQA \cite{cartis_escaping_2022, cartis_improving_2019} was employed to reduce the discrepancy between the simulated and measured beam sizes by minimizing the sum of all squared differences. The objective function calculated the sum of squared differences between the simulated and measured beam sizes, both horizontally (H) and vertically (V), across all data points. This process established a primary set of initial conditions.
 
 
-
-\subsection{Dispersion measurement technique and result}
-
+\subsection{Dispersion measurement}
 
 The dispersion was measured in T8 at three different locations: T08.BTV020, T08.BTV035, and T08.MWPC, which are respectively three Beam Television (BTV) monitors and the Multi-Wire Proportional Chamber (MWPC). The procedure was to change the momentum of the beam through the revolution frequency and measure the change in the centroid of the beam at these observation points.
 
@@ -108,7 +104,7 @@ The dispersion is given by the formula:
 D = \frac{\Delta x}{\frac{\Delta p}{p}}
 \end{equation}
 
-where $\Delta x$ is the change in the centroid position of the beam, and $\frac{\Delta p}{p}$ is the relative change in momentum of the beam.
+where $\Delta x$ represents the change in the centroid position, and $\frac{\Delta p}{p}$ signifies the relative change in the beam's momentum.
 
 The relationship between the change in revolution frequency and the relative change in beam momentum is expressed as:
 
@@ -116,17 +112,13 @@ The relationship between the change in revolution frequency and the relative cha
 \frac{\Delta f}{f} = -\eta \frac{\Delta p}{p}
 \end{equation}
 
-Here, $\eta$ is the slip factor, defined by:
+Here, $\eta$ is the slip factor, calculated using:
 
 \begin{equation}
 \eta = \left(\frac{1}{\gamma_{\text{tr}}^{2}} - \frac{1}{\gamma^{2}}\right)
 \end{equation}
 
-where $\gamma$ is the relativistic Lorentz factor for the beam, and $\gamma_{\text{tr}}$ is the transition gamma. The values were found using the energy of the ion beam and a MAD-X model of the PS where $\gamma = 11.414$ and $\gamma_{\text{tr}} = 6.12719$. The slip factor, $\eta$, can be calculated using these values.
-
-The revolution frequency, $f_{\text{rev}_0}$, is initially $452.0$ kHz. The dispersion value, $D$, can be calculated from the slope of the measured change in centroid position versus the relative change in momentum, corrected by the factor of $\frac{1}{\eta f_{\text{rev}_0}}$.
-
-
+where $\gamma$ is the relativistic Lorentz factor for the beam, and $\gamma_{\text{tr}}$ is the transition gamma. The values were found using the energy of the ion beam and a MAD-X model of the PS where $\gamma = 11.414$ and $\gamma_{\text{tr}} = 6.12719$. The revolution frequency, $f_{\text{rev}_0}$, is initially $452.0$ kHz. The dispersion value, $D$, can be calculated from the slope of the measured change in centroid position versus the relative change in momentum, corrected by the factor of $\frac{1}{\eta f_{\text{rev}_0}}$.
 
 \begin{figure}[!htb]
    \centering
@@ -135,7 +127,7 @@ The revolution frequency, $f_{\text{rev}_0}$, is initially $452.0$ kHz. The disp
    \label{fig:diff_beam_size}
 \end{figure}
 
-Here's a table of the dispersion measurements:
+Table \ref{tab:dispersion} presents the dispersion measurements:
 
 \begin{table}[h!]
 \centering
@@ -148,9 +140,9 @@ BTV35  & \(0.851 \pm 0.047\) & \(-0.061 \pm 0.009\) \\
 BTV20  & \(-0.197 \pm 0.034\) & \(0.035 \pm 0.031\) \\
 MWPC   & \(-0.963 \pm 0.082\) & \(-0.169 \pm 0.019\) \\
 \hline
+\label{tab:dispersion}
 \end{tabular}
 \end{table}
-
 
 
 \begin{figure}[!htb]
@@ -160,7 +152,9 @@ MWPC   & \(-0.963 \pm 0.082\) & \(-0.169 \pm 0.019\) \\
    \label{fig:dispersion}
 \end{figure}
 
-I found some dispersion values that I then compare to the model. Then I rematch on the dx, dpx, dy, dpy and used these guys as initial conditions. Because the twiss parameters betas are linked to the dispersion in the beam size formula, these will compensate for the change in the initial dispersion.
+I found some dispersion values that I then compare to the model. Then I rematch on the dx, dpx, dy, dpy and used these guys as initial conditions. It's important to note that within the beam size equation, there's a critical relationship between the beta function and dispersion: $ \sigma = \sqrt{\epsilon \beta + \left(\frac{dp}{p}\cdot D\right)^{2}} $
+With $\epsilon$ the emittance, $\beta$ the beta-function, $\frac{dp}{p}$ the relative momentum spread and $D$ the dispersion. This equation highlights the intrinsic connection between these parameters, demonstrating how they collectively influence the beam's size.
+
 
 This is not exactly correct because I the dispersion steering only for one optic. What I should have done is do the frev for every optics.
 
@@ -170,7 +164,7 @@ This is not exactly correct because I the dispersion steering only for one optic
     \label{tab:initial_conditions_comparison_single_col}
     \begin{tabular}{l c}
         \hline
-        Parameter & Value Change \\
+        Parameter & Initial \(\rightarrow\) Rematched \\
         \hline
         $\beta_x$ (m) & 53.074 \(\rightarrow\) 66.748 \\
         $\beta_y$ (m) & 3.675 \(\rightarrow\) 3.764 \\
@@ -182,17 +176,14 @@ This is not exactly correct because I the dispersion steering only for one optic
         $D'_y$ & 0.0 \(\rightarrow\) -0.005 \\
         $\varepsilon_{nx}$ ($\text{m}^{-5}$) & $2.53 \times 10^{-5}$ \(\rightarrow\) $2.28 \times 10^{-5}$ \\
         $\varepsilon_{ny}$ ($\text{m}^{-5}$) & $6.94 \times 10^{-6}$ \(\rightarrow\) $8.63 \times 10^{-6}$ \\
-        \hline
-        \textit{Other Parameters} & \\
-        \hline
-        $\sigma_e$ & 0.0045 (Unchanged) \\
+        $\frac{\sigma_{E}}{E}$ & 0.0045 \\
         \hline
     \end{tabular}
 \end{table}
 
 \subsection{Pybobyqa to fit the model to the measurement}
 \subsection{Kick response}
-\subsection{Initial conditions}
+
 \subsection{Challenges with stray field, motivates why measure initial conditions}
 
 \section{Optics small, large beam}
@@ -277,15 +268,14 @@ Rapid adjustment of beam energy is essential for effective radiation testing, as
 
 The 2022 approach of employing distinct cycles for each energy level was replaced in 2023 with a unified cycle. In this cycle, the B-field is adjusted via a Python script. This significantly reduces the time to switch between energies. This system allowed for seamless energy transitions between distinct levels—\SI{650}{}, \SI{750}{}, and \SI{1000}{\mega\electronvolt\per\nucleon}—with the capability to execute these changes rapidly at each new spill, effectively as fast as every \SI{15}-\SI{30}{\second}.
 
-The single cycle has enabled the user to perform energy scans, which are useful to determine precisely the beam’s kinetic energy using its penetration range in a slab of material of a known thickness, e.g. PolyMethyl Methacrylate (PMMA), or to automatize/speed up the SEE test of a component. The energy range previously mentioned is based on beam energy values inside the PS during the extraction. During the transport in the transfer line, multiple air regions are traversed by the beam, which lowers the beams kinetic energy through energy straggling. This energy straggling at the DUT can be estimated using the FLUKA [2] simulation and measured using the degraders. The FLUKA model also includes other elements that produce straggling effects, such as vacuum windows and beam instrumentation. \cite{noauthor_hearts_nodate}
+The single cycle has enabled the user to perform energy scans, which are useful to determine precisely the beam’s kinetic energy using its penetration range in a slab of material of a known thickness, e.g. PolyMethyl Methacrylate (PMMA), or to automatize/speed up the SEE test of a component. \cite{noauthor_hearts_nodate}
 
-Controlling the fluence, the number of particles incident per unit area, is vital for accurate radiation effect testing. The revised energy control mechanism enhances the ability to adjust the fluence quickly and accurately across different energy levels. This capability is essential for simulating the diverse radiation environments encountered in space, providing a more robust assessment of microelectronics' resilience under various conditions.
-
-This enhanced energy scan technique, featuring rapid and precise energy adjustments, represents a significant advancement in the domain of radiation effects testing. It enables more efficient and versatile testing procedures, vital for evaluating the durability of space-bound microelectronics against the spectrum of radiation threats in outer space.
+Python scripting also allows for controlling the fluence—the number of total ions incident on the DUT—which is vital for accurate radiation effect testing. A simple script sends a command to disable the beam once the target fluence is reached. The fluence is measured using the XSEC070, which has been calibrated for flux using the single ion counting capability of the diode.
 
 \subsection{Straggling effects}
+The energy range previously mentioned is based on beam energy values inside the PS during the extraction. During the transport in the transfer line, multiple air regions are traversed by the beam, which lowers the beams kinetic energy through energy straggling. This energy straggling at the DUT can be estimated using the FLUKA \cite{battistoni_overview_2015} simulation and measured using the degraders. The FLUKA model also includes other elements that produce straggling effects, such as vacuum windows and beam instrumentation. 
 
-The straggling effects of air on ion beams in the T8 line, as observed at the T08.BTV35 monitoring station. The data, corroborated by FLUKA simulations, showcases the relationship between the exit kinetic energy of the ion beams and their measured displacement from the beam center. This plot, seen in Figure \ref{fig:straggling_effects}, serves as a pivotal illustration of the challenges of low energy ion transport. It underscores the necessity for reduces the transport through air. By mitigating air straggling, we aim to achieve a more consistent beam trajectory, thus enhancing operational capabilities for VHE ion irradiation at the IRRAD/CHARM facility. The installation of an additional vacuum pipe in F61.MBXHD025 would allow for the linear scaling of magnet strengths, ensuring precise control over the beam path and maintaining beam integrity at varying energies and ion species.
+Figure \ref{fig:straggling_effects} illustrates air straggling effects on T8 line ion beams, observed at the T08.BTV35 station. Confirmed by FLUKA simulations, it highlights how the ion beams' exit kinetic energy correlates with their displacement from the center, emphasizing the need for air transport reduction. Installing additional vacuum pipes, particularly in F61.MBXHD025, would improve VHE ion irradiation at IRRAD/CHARM by reducing the straggling effect.
 \begin{figure}[!htb]
    \centering
    \includegraphics*[width=1.0\columnwidth]{straggling_effects.png}
