@@ -259,74 +259,6 @@ The current HEARTS setup encounters limitations due to extensive air regions alo
 
 
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% SMALL and LARGE OPTICS %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Comparison of measurement to simulation}
-% This section presents a comparison between the measured beam optics at various points along the transfer line and the predictions made by our MCS-enhanced simulation model.
-
-% Optics measurements were performed using the Beam Television (BTV) monitors along the transfer line. These measurements include profiles at various beam energies, extracted using the slow-extraction process from the CERN PS. Simultaneously, an enhanced model incorporating MCS effects was developed using the MAD-X simulation tool, adjusted to account for the scattering parameters calculated using the following MCS code discussed previously.
-
-% \subsection{Results and Discussion}
-% The results from the BTV measurements and MAD-X simulations are compiled in Table \ref{tab:optics_comparison}. The table lists the measured and simulated beam sizes, showing both the horizontal and vertical measurements across different stations.
-
-% % Table of Optics Comparison
-% \begin{table}[htb]
-% \centering
-% \caption{Comparison of Measured and Simulated Beam Sizes with MCS Effects}
-% \label{tab:optics_comparison}
-% \resizebox{\columnwidth}{!}{% Adjusts the table to column width
-% \begin{tabular}{cccc}
-% \hline
-% \textbf{Station} & \textbf{Measurement (mm)} & \textbf{Simulation (mm)} & \textbf{Difference (\%)} \\
-% \hline
-% BTV020 & 10.5 & 10.8 & -2.8 \\
-% BTV035 & 10.2 & 10.1 & 0.98 \\
-% MWPC   & 9.9  & 10.5 & -5.71 \\
-% \hline
-% \end{tabular}
-% }
-% \end{table}
-
-% The comparison reveals slight discrepancies between the measured and simulated values, indicative of the challenges associated with precisely modeling MCS effects. Notably, the deviation at the MWPC station suggests a need for further element in the simulation
-
-
-%\subsection{Comparison with Octavius array}
-%\subsection{Comparison with MWPC}
-
-During the final day of the November 2023 CHIMERA HEARTS run, RP conducted a survey with the beam energy set at 3 GeV/n. Below is a figure illustrating the comparison between the MAD-X model and FLUKA predictions as well as measurements taken by the MWPC.
-
-\begin{figure}[!htb]
-\centering
-\includegraphics*[width=1.0\columnwidth]{rp_survey.png}
-\caption{Difference in beam size between measurement and simulation.}
-\label{fig:diff_beam_size}
-\end{figure}
-
-Adjusting the optics presented challenges due to the beam not being well-centered in the quadrupoles, which introduced a dipolar moment, complicating the alignment process.
-
-%\subsection{Comparison with BTV}
-%\subsection{Mention difficulty of changing the optics because the beam is not well centered}
-
-%\section{Beam size as a function of RFKO gain}
-%\subsection{I've observed that the emittance changes at different energy.}
-%\subsection{Link with Wesley's contribution}
-
-
-
-
-
-
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% ENERGY CONTROL %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -345,11 +277,58 @@ As shown in Figure \ref{fig:straggling_effects}, at T08.BTV35, lower kinetic ene
 
 \begin{figure}[!htb]
    \centering
-   \includegraphics*[width=1.0\columnwidth]{straggling_effects.png}
+   \includegraphics*[width=0.9\columnwidth]{straggling_effects.png}
    \caption{Measurement of the straggling effects of air in the T8 line at BTV035 compared FLUKA simulation.}
    \label{fig:straggling_effects}
 \end{figure}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% COMPARISON MEAS AND SIM %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comparison of measurement to simulation}
+% This section presents a comparison between the measured beam optics at various points along the transfer line and the predictions made by our MCS-enhanced simulation model.
+
+% Optics measurements were performed using the Beam Television (BTV) monitors along the transfer line. These measurements include profiles at various beam energies, extracted using the slow-extraction process from the CERN PS. Simultaneously, an enhanced model incorporating MCS effects was developed using the MAD-X simulation tool, adjusted to account for the scattering parameters calculated using the following MCS code discussed previously.
+
+% \subsection{Results and Discussion}
+% The results from the BTV measurements and MAD-X simulations are compiled in Table \ref{tab:optics_comparison}. The table lists the measured and simulated beam sizes, showing both the horizontal and vertical measurements across different stations.
+
+%\subsection{Comparison with MWPC}
+
+
+Figure~\ref{fig:diff_beam_size} shows the comparison of horizontal (H) and vertical (V) beam size measurements with simulation values as a function of quadrupole strength. The right-hand side of the plot shows an increase in error for vertical measurements, due to beam scraping on a vacuum pipe aperture and loosing it's Gaussian shape. This comparison validates the simulation against actual beam behavior, essential for SEE testing accuracy at CHARM, while the scraping effect highlights the fact that adjusting the optics presented challenges due to the beam not being well-centered in the quadrupoles, which introduced a dipolar moment, complicating the quadrupole scan.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics*[width=0.9\columnwidth]{beam_size_comparison.png}
+   \caption{Comparison of beam size measurements and simulation.}
+   \label{fig:diff_beam_size}
+\end{figure}
+
+
+%\subsection{Comparison with Octavius array}
+
+
+%During the final day of the November 2023 CHIMERA HEARTS run, RP conducted a survey with the beam energy set at 3 GeV/n. Below is a figure illustrating the comparison between the MAD-X model and FLUKA predictions as well as measurements taken by the MWPC.
+
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics*[width=1.0\columnwidth]{rp_survey.png}
+%\caption{Difference in beam size between measurement and simulation.}
+%\label{fig:diff_beam_size}
+%\end{figure}
+
+
+
+%\subsection{Comparison with BTV}
+%\subsection{Mention difficulty of changing the optics because the beam is not well centered}
+
+%\section{Beam size as a function of RFKO gain}
+%\subsection{I've observed that the emittance changes at different energy.}
+%\subsection{Link with Wesley's contribution}
 
 
 
