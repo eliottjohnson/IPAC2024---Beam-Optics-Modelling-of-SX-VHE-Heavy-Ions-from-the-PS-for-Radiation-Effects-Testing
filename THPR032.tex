@@ -200,7 +200,8 @@ A match of the dispersion at the start of the F61 line was done using these meas
 From the PS extraction to the DUT, the beam travels through interceptive instrumentation devices and regions or air/windows, during which the emittance increases and the beam energy straggles due to matter interaction. Primary effects, such as an increase in beam size, required developing a custom multiple Coulomb scattering module\footnote{An example is available in the \href{https://gitlab.cern.ch/abt-optics-and-code-repository/simulation-codes/pybt/-/blob/master/pybt/examples/example_air_scattering.ipynb}{PyBT GitLab repository}.} to simulate these changes, compensating for MAD-X's lack of beam-matter interaction modeling. The increase in divergence, $\theta_{rms}$, for an ensemble of particles undergoing multiple Coulomb scattering as it passes through a medium is expressed as \cite{muller_description_2001}:
 
 \[
-\theta_{rms} = \frac{\SI{13.6}{\mega\electronvolt\per\speedoflight}}{p\beta_{p}}q_{p}\sqrt\frac{L}{L_{rad}}\]
+\theta_{rms} = \frac{\SI{13.6}{\mega\electronvolt\per\speedoflight}}{p\beta_{p}}q_{p}\sqrt\frac{L}{L_{rad}}
+\]
 
 \noindent where $p$ is the beam's total energy in \SI{}{\mega\electronvolt}, $q_{p}$ the number of charges, $L$ is the length of the interaction and $L_{\text{rad}}$ is:
 
@@ -214,7 +215,7 @@ L_{\text{rad}} = \frac{L_{\text{rad0}}}{\frac{P_{\text{Torr}}}{760}}
 \begin{equation}
 \label{eq:mc_eq}
 \begin{aligned}
-\alpha_{1} &= \frac{\varepsilon \alpha_0 - \frac{L}{2} \theta_{\text{rms}}^2}{\varepsilon_0 + \Delta \varepsilon}\\
+\alpha_{1} &= \frac{\varepsilon_0 \alpha_0 - \frac{L}{2} \theta_{\text{rms}}^2}{\varepsilon_0 + \Delta \varepsilon}\\
 \beta_{1} &= \frac{\varepsilon_0 \beta_0 + \frac{L^2}{3} \theta_{\text{rms}}^2}{\varepsilon_0 + \Delta \varepsilon}\\
 \varepsilon_{1} &= \varepsilon_0 + \frac{1}{2} \theta_{\text{rms}}^2 \left( \beta_0 + L \alpha_0 + \frac{L^2}{3} \gamma_0 \right)
 \end{aligned}
