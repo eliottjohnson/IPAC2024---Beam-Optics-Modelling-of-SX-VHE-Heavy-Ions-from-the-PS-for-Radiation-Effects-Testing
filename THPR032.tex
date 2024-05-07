@@ -105,23 +105,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{OPTICS MODEL}
 
-CERN High-Energy Accelerators for Radiation Testing and Shielding (HEARTS) \cite{noauthor_hearts_nodate} use slow-extracted beams from CERN's Proton Synchrotron (PS) to irradiate electronics at the CERN High Energy Accelerator Mixed-field (CHARM) facility. Accurate beam modeling is essential for precisely predicting beam sizes on Devices Under Test (DUTs), ensuring the reliability of radiation effects testing. This section discusses the detailed beam optics measurements undertaken using a lead ion beam with a kinetic energy of \SI{2}{\giga\electronvolt\per\nucleon}, aimed at refining the optics model. 
+CERN High-Energy Accelerators for Radiation Testing and Shielding (HEARTS) \cite{noauthor_hearts_nodate} use slow-extracted beams from CERN's Proton Synchrotron (PS) to irradiate electronics at the CERN High Energy Accelerator Mixed-field (CHARM) \cite{thorntonCHARMFacilityTest2016} facility. Accurate beam modeling is essential for precisely predicting beam sizes on Devices Under Test (DUTs), ensuring the reliability of radiation effects testing. This section discusses the detailed beam optics measurements undertaken using a lead ion beam with a kinetic energy of \SI{2}{\giga\electronvolt\per\nucleon}, aimed at refining the optics model. 
 
 \subsection{Quadrupole Scan Measurement}
 
-During Machine Development (MD) studies, quadrupole scans on the PS to East Dump transfer line (F61D) established initial beam conditions post-extraction, capturing the non-linear behavior of the PS main units' edge fields. The empirical modeling approach has been shown to be more reliable than a stitched model \cite{johnson_beam_2022}. The transfer line includes three quadrupoles and a Beam Television (BTV) equipped with a fluorescent screen for beam size measurements. The scans were conducted at the upper energy limits provided by HEARTS to mitigate the impact of beam-material (air, instrumentation, vacuum window) interaction. Py-BOBYQA \cite{cartis_escaping_2022, cartis_improving_2019} was chosen as the optimization algorithm to minimize the sum of squared differences between the simulated and measured beam sizes. It was used to determine a set of initial Twiss parameters and normalized emittances, while keeping the dispersion constant. Additionally, kick response measurements validated the beam optics model, giving confidence in the model's representation of the transfer line.
+During Machine Development (MD) studies, quadrupole scans on the PS to East Dump transfer line (F61D) \cite{RadiationProtectionSurvey} established initial beam conditions post-extraction, capturing the non-linear behavior of the PS main units' edge fields \cite{angladaReferenceMagneticModel2019, manglunkiBeamOpticsModeling1997, zicklerInfluenceShimsPS}. The empirical modeling approach has been shown to be more reliable than a stitched model \cite{johnson:ipac22-mopotk030}. The transfer line includes three quadrupoles and a Beam Television (BTV) equipped with a fluorescent screen for beam size measurements. The scans were conducted at the upper energy limits provided by HEARTS to mitigate the impact of beam-material (air, instrumentation, vacuum window) interaction. Py-BOBYQA \cite{cartis_escaping_2022, cartis_improving_2019} was chosen as the optimization algorithm to minimize the sum of squared differences between the simulated and measured beam sizes. It was used to determine a set of initial Twiss parameters and normalized emittances, while keeping the dispersion constant. Additionally, kick response measurements validated the beam optics model, giving confidence in the model's representation of the transfer line.
 
 
 
 \subsection{Dispersion Measurement}
 
-In a second MD, the dispersion was measured in the T8 transfer line at two different BTV locations (T08.BTV020, T08.BTV035) and at the Multi-Wire Proportional Chamber (MWPC) located at the end of the line (T08.MWPC). The momentum of the beam was changed by modifying the revolution frequency $f_{\text{rev}}$ before extraction (before the RF is turned off and the beam debunched), followed by measuring the resulting centroid movement. Dispersion is given by:
+In a second MD, the dispersion was measured in the T8 transfer line at two different BTV locations (T08.BTV020, T08.BTV035) and at the Multi-Wire Proportional Chamber (MWPC) located at the end of the line (T08.MWPC) \cite{carlsenChapterBeamlineMain2021}. The momentum of the beam was changed by modifying the revolution frequency $f_{\text{rev}}$ before extraction (before the RF is turned off and the beam debunched), followed by measuring the resulting centroid movement \cite{mintyBeamTechniquesBeam2003}. Dispersion is given by:
 
 \begin{equation}
 D = \frac{\Delta x}{\frac{\Delta p}{p}}
 \end{equation}
 
-\noindent where $\Delta x$ is the change in the centroid position, and $\frac{\Delta p}{p}$ is the relative change in the beam's momentum. The change in $f_{\text{rev}}$ and the relative change in beam momentum can be expressed as:
+\noindent where $\Delta x$ is the change in the centroid position, and $\frac{\Delta p}{p}$ is the relative change in the beam's momentum \cite{chaoHandbookAcceleratorPhysics2023}. The change in $f_{\text{rev}}$ and the relative change in beam momentum can be expressed as:
 
 \begin{equation}
 \frac{\Delta f_{\text{rev}}}{f_{\text{rev}}} = -\eta \frac{\Delta p}{p}
@@ -197,7 +197,7 @@ A match of the dispersion at the start of the F61 line was done using these meas
 \section{Air scattering}
 
 
-From the PS extraction to the DUT, the beam travels through interceptive instrumentation devices and regions or air/windows, during which the emittance increases and the beam energy straggles due to matter interaction. Primary effects, such as an increase in beam size, required developing a custom multiple Coulomb scattering module\footnote{An example is available in the \href{https://gitlab.cern.ch/abt-optics-and-code-repository/simulation-codes/pybt/-/blob/master/pybt/examples/example_air_scattering.ipynb}{PyBT GitLab repository}.} to simulate these changes, compensating for MAD-X's lack of beam-matter interaction modeling. The increase in divergence, $\theta_{rms}$, for an ensemble of particles undergoing multiple Coulomb scattering as it passes through a medium is expressed as \cite{muller_description_2001}:
+From the PS to the DUT, the beam travels through interceptive instrumentation and air / window regions, during which the emittance increases and the beam energy straggles due to matter interaction \cite{giovannozziSourcesEmittanceGrowth2005, groomPassageParticlesMatter2000, hardtFewSimpleExpressions1968, mohlSourcesEmittanceGrowth2006}. Primary effects, such as an increase in beam size, required developing a custom multiple Coulomb scattering module\footnote{An example is available in the \href{https://gitlab.cern.ch/abt-optics-and-code-repository/simulation-codes/pybt/-/blob/master/pybt/examples/example_air_scattering.ipynb}{PyBT GitLab repository}.} to simulate these changes, compensating for MAD-X's lack of beam-matter interaction modeling. The increase in divergence, $\theta_{rms}$, for an ensemble of particles undergoing multiple Coulomb scattering as it passes through a medium is expressed as \cite{muller_description_2001}:
 
 \[
 \theta_{rms} = \frac{\SI{13.6}{\mega\electronvolt\per\speedoflight}}{p\beta_{p}}q_{p}\sqrt\frac{L}{L_{rad}}
@@ -209,7 +209,7 @@ From the PS extraction to the DUT, the beam travels through interceptive instrum
 L_{\text{rad}} = \frac{L_{\text{rad0}}}{\frac{P_{\text{Torr}}}{760}}
 \]
 
-\noindent where $P=\SI{1.013}{\bar}$ is the standard air pressure, and $P_{\text{Torr}} = 750.062\cdot P$. The radiation length for air, $L_{\text{rad0}}=\SI{301}{}$\footnote{\href{https://cds.cern.ch/record/941314/files/p245.pdf}{{https://cds.cern.ch/record/941314/files/p245.pdf}}}. The Twiss parameters and emittance evolve from before (0) and after (1) an air region of length L as,
+\noindent where $P=\SI{1.013}{\bar}$ is the standard air pressure, and $P_{\text{Torr}} = 750.062\cdot P$. The radiation length for air, $L_{\text{rad0}}=\SI{301}{}$\footnote{\href{https://cds.cern.ch/record/941314/files/p245.pdf}{{https://cds.cern.ch/record/941314/files/p245.pdf}}}. The Twiss parameters and emittance evolve from before (0) and after (1) an air region of length L as \cite{mullerDescriptionBeamMatterInteraction2001c},
 
 
 \begin{equation}
@@ -221,7 +221,7 @@ L_{\text{rad}} = \frac{L_{\text{rad0}}}{\frac{P_{\text{Torr}}}{760}}
 \end{aligned}
 \end{equation}
 
-The modular design of the code allows for effective handling of multiple Coulomb interactions in any MAD-X sequence. After loading the MAD-X sequence, the user introduces air regions along the sequence with a specified integration length $L$ in meters. The process\_scattering() function calculates the impact of the MCS on the beam parameters, generating an updated Twiss output. Upon reaching the "AIR\_START" marker, the function records the beta functions using "SAVEBETA" and segments the beam line at this point. It then performs a Twiss calculation with the saved values, updating $\alpha, \beta$ and $\varepsilon$ following Eq.~\eqref{eq:mc_eq}. This procedure is repeated at each "INNER\_MARKER," refining the beam optics iteratively to account for multiple Coulomb scattering effects in air regions.
+The modular design of the code \cite{PybtMasterABT2023a} allows for effective handling of multiple Coulomb interactions in any MAD-X sequence. After loading the MAD-X sequence, the user introduces air regions along the sequence with a specified integration length $L$ in meters. The process\_scattering() function calculates the impact of the MCS on the beam parameters, generating an updated Twiss output. Upon reaching the "AIR\_START" marker, the function records the beta functions using "SAVEBETA" and segments the beam line at this point. It then performs a Twiss calculation with the saved values, updating $\alpha, \beta$ and $\varepsilon$ following Eq.~\eqref{eq:mc_eq}. This procedure is repeated at each "INNER\_MARKER," refining the beam optics iteratively to account for multiple Coulomb scattering effects in air regions.
 
 \begin{figure}[!htb]
    \centering
@@ -234,7 +234,7 @@ Semi-analytical results were compared with Monte Carlo simulations that applied 
 
 \begin{table}[ht]
 \centering
-\caption{Simulated Beam Sizes (in mm) for Analytical, Monte Carlo, FLUKA and XSuite Methods under Non-scattered and Scattered Conditions using Multiple Coulomb Interaction only}
+\caption{Simulated Beam Sizes (in mm) for Analytical, Monte Carlo, FLUKA and XSuite \cite{iadarola:hb2023-tua2i1} Methods under Non-scattered and Scattered Conditions using Multiple Coulomb Interaction only}
 \begin{tabular}{lcccc}
 \hline
 $\sigma$ & Ana. & M.C. & FLUKA & XSuite \\
@@ -262,14 +262,14 @@ The current HEARTS installation is limited due to extensive air regions along th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Energy control}
 
-Variation of the ion beam’s energy is essential for exploring large parameter space of Linear Energy Transfer (LET) and penetration depth and were developed by CHIMERA at CERN. This involves adjusting the magnetic field at the PS's flat top to change beam rigidity. A makerule algorithm recalculates the magnetic field necessary for transfer line magnets. Removing Pole Face Windings (PFW), which are used to control the tune in the PS and do not scale linearly with rigidity, ensures smooth energy variations. In 2023, the use of distinct cycles for each energy was replaced by a single cycle managed by a Python script that can be quickly trimmed to seamlessly transition between \SI{650}{} and \SI{2000}{\mega\electronvolt\per\nucleon} executing changes every \SI{15}-\SI{30}{\second}. The cycle also supports energy scans that determine the beam's kinetic energy using penetration tests in materials like PolyMethyl Methacrylate (PMMA) and speeds up Single Event Effects (SEE) testing of components \cite{noauthor_hearts_nodate}. Additionally, Python scripting provides control over fluence, which is vital for accurate radiation effect testing. A script ensures that the beam is disabled once the target total ion count impacting the DUT is achieved, with fluence measured by the calibrated XSEC070.
+Variation of the ion beam’s energy is essential for exploring large parameter space of Linear Energy Transfer (LET) and penetration depth and were developed by CHIMERA at CERN \cite{fraser:ipac22-wepost012, johnson:ipac23-mopa115, waets:ipac23-thpm128}. This involves adjusting the magnetic field at the PS's flat top to change beam rigidity. A makerule algorithm recalculates the magnetic field necessary for transfer line magnets. Removing Pole Face Windings (PFW), which are used to control the tune in the PS and do not scale linearly with rigidity \cite{Asklöv2005}, ensures smooth energy variations. In 2023, the use of distinct cycles for each energy was replaced by a single cycle managed by a Python script \cite{JohnsonEnergyGUI} that can be quickly trimmed to seamlessly transition between \SI{650}{} and \SI{2000}{\mega\electronvolt\per\nucleon} executing changes every \SI{15}-\SI{30}{\second}. The cycle also supports energy scans that determine the beam's kinetic energy using penetration tests in materials like PolyMethyl Methacrylate (PMMA) and speeds up Single Event Effects (SEE) testing of components. Additionally, Python scripting provides control over fluence \cite{JohnsonFluenceStop}, which is vital for accurate radiation effect testing. A script ensures that the beam is disabled once the target total ion count impacting the DUT is achieved, with fluence measured by the calibrated XSEC070.
 
 \subsection{Straggling Effects}
 Energy straggling affects the beam's rigidity as it traverses air regions in the F61 and T08 transfer lines. This effect, which was simulated by FLUKA including vacuum windows, air and beam instrumentation \cite{battistoni_overview_2015} was measured by observing the moving transverse position in a dispersive region in the transfer line. As shown in Fig. \ref{fig:straggling_effects}, at T08.BTV35, the lower kinetic energy at extraction leads to a more significant beam displacement, confirming FLUKA's predictions. Installing vacuum chambers, particularly in key areas such as the F61.MBXHD025 switching dipole of F61, is recommended to reduce air-induced straggling. This would optimize VHE ion irradiation at IRRAD/CHARM by improving beam transport.
 
 \begin{figure}[!htb]
    \centering
-   \includegraphics*[width=1.0\columnwidth]{THPR032_f3.png}
+   \includegraphics*[width=0.9\columnwidth]{THPR032_f3.png}
    \caption{Measurement of the straggling effects in the T8 line at BTV035 compared to FLUKA simulation.}
    \label{fig:straggling_effects}
 \end{figure}
@@ -295,7 +295,7 @@ Figure~\ref{fig:diff_beam_size} compares the measured and simulated horizontal (
 
 \begin{figure}[!htb]
    \centering
-   \includegraphics*[width=1.0\columnwidth]{THPR032_f4.png}
+   \includegraphics*[width=0.8\columnwidth]{THPR032_f4.png}
    \caption{Comparison of beam size measurements and simulation at the MWPC.}
    \label{fig:diff_beam_size}
 \end{figure}
@@ -332,30 +332,10 @@ Figure~\ref{fig:diff_beam_size} compares the measured and simulated horizontal (
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CONCLUSION}
 
-This study has advanced the beam optics modeling for radiation effects testing with slow-extracted VHE heavy ions from the PS. Key advancements include the refined measurement of initial conditions, the characterization of the dispersion, and the modeling of air scattering through multiple Coulomb scattering. Note that the current air modeling excludes elastic and inelastic interactions. The validated beam model significantly improves the precision and reliability of radiation testing setups. Future improvements will focus on moving HEARTS from CHARM to IRRAD and an additional vacuum section to minimize air interactions will further refine beam control and homogeneity. These contributions not only enhance the robustness of radiation testing at CERN, but also provide valuable insights for similar facilities globally.
+This study has advanced the beam optics modeling for radiation effects testing with slow-extracted VHE heavy ions from the PS. Key advancements include the refined measurement of initial conditions, the characterization of the dispersion, and the modeling of air scattering through multiple Coulomb scattering. Note that the current air modeling excludes elastic and inelastic interactions. The validated beam model significantly improves the precision and reliability of radiation testing setups. Future improvements will focus on moving HEARTS from CHARM to IRRAD, adding an additional vacuum section to minimize air interactions, and further refine beam control and homogeneity \cite{scarpa:ipac24-thpr27}. These contributions not only enhance the robustness of radiation testing at CERN, but also provide valuable insights for similar facilities globally.
 
 
 \ifboolexpr{bool{jacowbiblatex}}%
-	{\printbibliography}%
-	{%
-	% "biblatex" is not used, go the "manual" way
-	
-	%\begin{thebibliography}{99}   % Use for  10-99  references
-	\begin{thebibliography}{9} % Use for 1-9 references
-	
-	\bibitem{jacow-help}
-		JACoW,
-		\url{http://www.jacow.org}
-	
-	\bibitem{IEEE}
-		\textit{IEEE Editorial Style Manual},
-		IEEE Periodicals, Piscataway,
-		NJ, USA, Oct. 2014, pp. 34--52.
-
-	\bibitem{journal-abbreviations}
-	\url{https://woodward.library.ubc.ca/researchhelp/journal-abbreviations/}
-
-	\end{thebibliography}
-} % end \ifboolexpr
+{\printbibliography}
 
 \end{document}
