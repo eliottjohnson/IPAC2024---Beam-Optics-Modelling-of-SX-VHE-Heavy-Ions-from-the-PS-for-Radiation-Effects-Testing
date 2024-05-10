@@ -115,13 +115,7 @@ During Machine Development (MD) studies, quadrupole scans on the PS to East Dump
 
 \subsection{Dispersion Measurement}
 
-In a second MD, the dispersion was measured in the T8 transfer line at two different BTV locations (T08.BTV020, T08.BTV035) and at the Multi-Wire Proportional Chamber (MWPC) located at the end of the line (T08.MWPC) \cite{carlsenChapterBeamlineMain2021}. The momentum of the beam was changed by modifying the revolution frequency $f_{\text{rev}}$ before extraction (before the RF is turned off and the beam debunched), followed by measuring the resulting centroid movement \cite{mintyBeamTechniquesBeam2003}. Dispersion is given by:
-
-\begin{equation}
-D = \frac{\Delta x}{\frac{\Delta p}{p}}
-\end{equation}
-
-\noindent where $\Delta x$ is the change in the centroid position, and $\frac{\Delta p}{p}$ is the relative change in the beam's momentum \cite{chaoHandbookAcceleratorPhysics2023}. The change in $f_{\text{rev}}$ and the relative change in beam momentum can be expressed as:
+In a second MD, the dispersion was measured in the T8 transfer line at two different BTV locations (T08.BTV020, T08.BTV035) and at the Multi-Wire Proportional Chamber (MWPC) located at the end of the line (T08.MWPC) \cite{carlsenChapterBeamlineMain2021}. The momentum of the beam was changed by modifying the revolution frequency $f_{\text{rev}}$ before extraction (before the RF is turned off and the beam debunched), followed by measuring the resulting centroid movement \cite{mintyBeamTechniquesBeam2003}. Dispersion is given by \( D = \Delta x / (\Delta p / p) \), where \( \Delta x \) is the change in the centroid position, and \( \Delta p / p \) is the relative change in the beam's momentum \cite{chaoHandbookAcceleratorPhysics2023}. The change in $f_{\text{rev}}$ and the relative change in beam momentum can be expressed as:
 
 \begin{equation}
 \frac{\Delta f_{\text{rev}}}{f_{\text{rev}}} = -\eta \frac{\Delta p}{p}
@@ -291,7 +285,7 @@ Energy straggling affects the beam's rigidity as it traverses air regions in the
 %\subsection{Comparison with MWPC}
 
 
-Figure~\ref{fig:diff_beam_size} compares the measured and simulated horizontal (H) and vertical (V) beam sizes at the MWPC as a function of quadrupole strengths, highlighting that the vertical beam measurements exhibit increased errors due to interactions with the vacuum pipe aperture, which alters its Gaussian shape. The aperture scraping may occur due to the varying dipolar moment experienced during quadrupole scans, as the beam does not travel through the center of the quadrupoles. This comparison validates the accuracy of the simulations used for SEE testing at CHARM. 
+Figure~\ref{fig:diff_beam_size} compares measured and simulated beam sizes at the MWPC, highlighting increased vertical errors due to vacuum pipe aperture interactions distorting the Gaussian shape. These discrepancies occur because the beam isn't centered in the quadrupoles, leading to a varying dipolar moment. Optimized on the shorter East Dump line (27 m) and not the longer T8 line (140 m), the model requires FLUKA validation to address missing interactions like elastic and inelastic air effects and instrumentation influences, particularly at lower energies (600 MeV). Results also vary by quadrupole; QDN061, for instance, matches well vertically but not horizontally. Efforts are underway to improve accuracy by adding another MWPC at IRRAD on Table 1 for this year's irradiation.
 
 \begin{figure}[!htb]
    \centering
@@ -332,7 +326,7 @@ Figure~\ref{fig:diff_beam_size} compares the measured and simulated horizontal (
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CONCLUSION}
 
-This study has advanced the beam optics modeling for radiation effects testing with slow-extracted VHE heavy ions from the PS. Key advancements include the refined measurement of initial conditions, the characterization of the dispersion, and the modeling of air scattering through multiple Coulomb scattering. Note that the current air modeling excludes elastic and inelastic interactions. The validated beam model significantly improves the precision and reliability of radiation testing setups. Future improvements will focus on moving HEARTS from CHARM to IRRAD, adding an additional vacuum section to minimize air interactions, and further refine beam control and homogeneity \cite{scarpa:ipac24-thpr27}. These contributions not only enhance the robustness of radiation testing at CERN, but also provide valuable insights for similar facilities globally.
+This study has advanced the beam optics modeling for radiation effects testing with slow-extracted VHE heavy ions from the PS. Key advancements include the refined measurement of initial conditions, the characterization of the dispersion, and the modeling of air scattering through multiple Coulomb scattering. The validated beam model significantly improves the precision and reliability of radiation testing setups. Future improvements will focus on moving HEARTS from CHARM to IRRAD, adding an additional vacuum section to minimize air interactions, and further refine beam control and homogeneity \cite{scarpa:ipac24-thpr27}. These contributions not only enhance the robustness of radiation testing at CERN, but also provide valuable insights for similar facilities globally.
 
 
 \ifboolexpr{bool{jacowbiblatex}}%
