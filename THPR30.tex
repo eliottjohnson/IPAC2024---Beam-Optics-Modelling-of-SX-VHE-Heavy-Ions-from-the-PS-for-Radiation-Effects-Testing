@@ -49,7 +49,7 @@
  {\usepackage[utf8]{inputenc}}           % switch to utf8
 
 \usepackage[USenglish]{babel}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 \DeclareSIUnit\nucleon{u}
 \DeclareSIUnit\torr{Torr}
@@ -191,7 +191,7 @@ A match of the dispersion at the start of the F61 line was done using these meas
 \section{Air scattering}
 
 
-From the PS to the DUT, the beam travels through interceptive instrumentation and air / window regions, during which the emittance increases and the beam energy straggles due to matter interaction \cite{giovannozziSourcesEmittanceGrowth2005, groomPassageParticlesMatter2000, hardtFewSimpleExpressions1968, mohlSourcesEmittanceGrowth2006}. Primary effects, such as an increase in beam size, required developing a custom multiple Coulomb scattering module\footnote{An example is available in the \href{https://gitlab.cern.ch/abt-optics-and-code-repository/simulation-codes/pybt/-/blob/master/pybt/examples/example_air_scattering.ipynb}{PyBT GitLab repository}.} to simulate these changes, compensating for MAD-X's lack of beam-matter interaction modeling. The increase in divergence, $\theta_{rms}$, for an ensemble of particles undergoing multiple Coulomb scattering as it passes through a medium is expressed as \cite{muller_description_2001}:
+From the PS to the DUT, the beam travels through interceptive instrumentation and air / window regions, during which the emittance increases and the beam energy straggles due to matter interaction \cite{giovannozziSourcesEmittanceGrowth2005, groomPassageParticlesMatter2000, hardtFewSimpleExpressions1968, mohlSourcesEmittanceGrowth2006}. Primary effects, such as an increase in beam size, required developing a custom multiple Coulomb scattering module\footnote{An example is available in the https://gitlab.cern.ch/abt-optics-and-code-repository/simulation-codes/pybt/-/blob/master/pybt/examples/example_air_scattering.ipynb.} to simulate these changes, compensating for MAD-X's lack of beam-matter interaction modeling. The increase in divergence, $\theta_{rms}$, for an ensemble of particles undergoing multiple Coulomb scattering as it passes through a medium is expressed as \cite{muller_description_2001}:
 
 \[
 \theta_{rms} = \frac{\SI{13.6}{\mega\electronvolt\per\speedoflight}}{p\beta_{p}}q_{p}\sqrt\frac{L}{L_{rad}}
